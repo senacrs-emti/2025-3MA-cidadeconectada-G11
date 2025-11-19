@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:scrollbarThumbHorizontal="@drawable/lupa"
     tools:context=".MainActivity">
 
     <ImageView
@@ -30,5 +31,21 @@
         android:textSize="30sp"
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="204dp" />
+
+    <SearchView
+        style="@android:style/Widget.Material.SearchView"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
+        android:backgroundTint="@color/white"
+        android:closeIcon="@drawable/lupa"
+        android:commitIcon="@drawable/lupa"
+        android:foregroundTint="@color/white"
+        android:goIcon="@drawable/lupa"
+        android:queryBackground="@drawable/lupa"
+        android:submitBackground="@drawable/lupa"
+        android:tint="@color/white"
+        android:voiceIcon="@drawable/lupa"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
