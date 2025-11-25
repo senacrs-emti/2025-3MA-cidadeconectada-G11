@@ -32,42 +32,34 @@
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="204dp" />
 
-    <SearchView
-        style="@android:style/Widget.Material.SearchView"
-        android:layout_width="270dp"
-        android:layout_height="46dp"
-        android:backgroundTint="@color/white"
-        android:closeIcon="@drawable/lupa"
-        android:commitIcon="@drawable/lupa"
-        android:foregroundTint="@color/white"
-        android:goIcon="@drawable/lupa"
-        android:queryBackground="@drawable/lupa"
-        android:submitBackground="@drawable/lupa"
-        android:tint="@color/white"
-        android:voiceIcon="@drawable/lupa"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="4dp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="357dp"
+        android:layout_height="432dp"
+        app:srcCompat="@drawable/bloco"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="303dp" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="348dp"
-        android:layout_height="306dp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="371dp">
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="66dp"
+        android:layout_height="32dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="2dp" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monday" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tuesday" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wednesday" />
-    </com.google.android.material.tabs.TabLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Obras Favoritadas"
+        android:textColor="#f08d4c"
+        android:textSize="27sp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="373dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
