@@ -29,16 +29,23 @@
         android:text="Acompanhe obras em Porto Alegre"
         android:textColor="#de386a"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="204dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="357dp"
         android:layout_height="432dp"
-        app:srcCompat="@drawable/bloco"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="303dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/bloco" />
 
     <TextView
         android:id="@+id/textView2"
@@ -48,8 +55,12 @@
         android:text="Home"
         android:textColor="@color/white"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="2dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007" />
 
     <TextView
         android:id="@+id/textView3"
@@ -59,7 +70,11 @@
         android:text="Obras Favoritadas"
         android:textColor="#f08d4c"
         android:textSize="27sp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="373dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.527" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
