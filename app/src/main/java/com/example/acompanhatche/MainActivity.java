@@ -23,7 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // BANCO DE DADOS
-    private static final String URL_API = "http://172.20.161.174/api/get_data.php"; // <- mudar o ip
+    private static final String URL_API = "http://192.168.1.31/api/get_data.php"; // <- mudar o ip
     private static final String TAG = "API_RESPONSE";
     private List<Obra> listaObras = new ArrayList<>();
 
