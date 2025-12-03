@@ -24,7 +24,11 @@
             android:exported="false"></activity>
         <activity
             android:name=".Locais"
-            android:exported="false" />
+            android:exported="true" />
+        <meta-data
+            android:name="com.google.android.geo.AIzaSyCzpSSbI_-_9Btz7KHUaagqe3PqIsOcVN4"
+            android:value="AIzaSyCzpSSbI_-_9Btz7KHUaagqe3PqIsOcVN4" />
+
         <activity
             android:name=".Cadastro"
             android:exported="false" /> <!-- Configuração para permitir tráfego HTTP simples (se estiver usando http) -->
@@ -47,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"
