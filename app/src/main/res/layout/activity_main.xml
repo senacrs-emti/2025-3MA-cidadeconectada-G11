@@ -9,6 +9,7 @@
     android:scrollbarThumbHorizontal="@drawable/lupa"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/tituloid"
         android:layout_width="238dp"
@@ -29,8 +30,12 @@
         android:text="Acompanhe obras em Porto Alegre"
         android:textColor="#de386a"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="204dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332" />
 
     <SearchView
         style="@android:style/Widget.Material.SearchView"
@@ -47,27 +52,5 @@
         android:voiceIcon="@drawable/lupa"
         tools:layout_editor_absoluteX="62dp"
         tools:layout_editor_absoluteY="4dp" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="348dp"
-        android:layout_height="306dp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="371dp">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Monday" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tuesday" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wednesday" />
-    </com.google.android.material.tabs.TabLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
