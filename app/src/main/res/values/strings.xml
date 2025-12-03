@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AcompanhaTche</string>
+    <string name="entrar">Entrar</string>
+    <string name="text_cadastro">Ainda não possui uma conta? Clique aqui!</string>
+    <string name="text_login">Já possui uma conta? Clique aqui!</string>
+    <string name="title_cadastro">Cadastre-se</string>
 </resources>

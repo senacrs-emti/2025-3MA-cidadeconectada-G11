@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202061270148",
+    "project_id": "acompanhatche",
+    "storage_bucket": "acompanhatche.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202061270148:android:cc5c8377d9af9818d386d1",
+        "android_client_info": {
+          "package_name": "com.example.acompanhatche"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwL_VSU3ip3Zpc7qYZ-rABgsjLLVqkw94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,6 +9,7 @@
     android:scrollbarThumbHorizontal="@drawable/lupa"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/tituloid"
         android:layout_width="238dp"
@@ -31,50 +32,25 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintHorizontal_bias="0.178"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.332" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="357dp"
-        android:layout_height="432dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/bloco" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="66dp"
-        android:layout_height="32dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="Home"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Obras Favoritadas"
-        android:textColor="#f08d4c"
-        android:textSize="27sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+    <SearchView
+        style="@android:style/Widget.Material.SearchView"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
+        android:backgroundTint="@color/white"
+        android:closeIcon="@drawable/lupa"
+        android:commitIcon="@drawable/lupa"
+        android:foregroundTint="@color/white"
+        android:goIcon="@drawable/lupa"
+        android:queryBackground="@drawable/lupa"
+        android:submitBackground="@drawable/lupa"
+        android:tint="@color/white"
+        android:voiceIcon="@drawable/lupa"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
