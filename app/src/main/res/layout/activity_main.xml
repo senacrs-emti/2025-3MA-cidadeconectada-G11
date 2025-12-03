@@ -9,7 +9,6 @@
     android:scrollbarThumbHorizontal="@drawable/lupa"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/tituloid"
         android:layout_width="238dp"
@@ -30,19 +29,13 @@
         android:text="Acompanhe obras em Porto Alegre"
         android:textColor="#de386a"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tituloid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloid"
-        app:layout_constraintVertical_bias="0.719" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="204dp" />
 
     <SearchView
-        android:id="@+id/searchView"
         style="@android:style/Widget.Material.SearchView"
         android:layout_width="270dp"
         android:layout_height="46dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="@color/white"
         android:closeIcon="@drawable/lupa"
         android:commitIcon="@drawable/lupa"
@@ -52,19 +45,14 @@
         android:submitBackground="@drawable/lupa"
         android:tint="@color/white"
         android:voiceIcon="@drawable/lupa"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="4dp" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
         android:layout_width="348dp"
         android:layout_height="306dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="371dp">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
