@@ -4,4 +4,5 @@
     <string name="text_cadastro">Ainda não possui uma conta? Clique aqui!</string>
     <string name="text_login">Já possui uma conta? Clique aqui!</string>
     <string name="title_cadastro">Cadastre-se</string>
+    //String apiKey = getString(R.string.mapa_chave);
 </resources>

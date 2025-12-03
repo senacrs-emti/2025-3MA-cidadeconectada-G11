@@ -13,11 +13,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +28,7 @@ import java.util.List;
 public class ApiTestActivity extends AppCompatActivity {
 
     // BANCO DE DADOS
-    private static final String URL_API = "http://10.0.2.2/api/get_data.php"; // <- mudar o ip
+    private static final String URL_API = "http://192.168.21.224/api/get_data.php"; // <- mudar o ip
     private static final String TAG = "DADOS_API";
     private List<Obra> listaObras = new ArrayList<>();
 
@@ -47,7 +42,7 @@ public class ApiTestActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        //fetchDataFromApi();
+        fetchDataFromApi();
     }
 
     private void fetchDataFromApi() {
