@@ -23,8 +23,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class Perfil extends AppCompatActivity {
 
-    private TextView text_home, nomeUsuario, emailUsuario;
-    private Button bt_deslogar;
+    private TextView nomeUsuario, emailUsuario;
+    private Button bt_deslogar, bt_locais, bt_home;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioID;
 
@@ -44,11 +44,16 @@ public class Perfil extends AppCompatActivity {
 
         IniciarComponentes();
 
-        text_home = findViewById(R.id.text_home);
-
-        text_home.setOnClickListener(new View.OnClickListener() {
+        bt_locais.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Locais.class);
+                startActivity(intent);
+            }
+        });
+        bt_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(Perfil.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -86,5 +91,7 @@ public class Perfil extends AppCompatActivity {
         nomeUsuario = findViewById( R.id.text_nome_usuario);
         emailUsuario = findViewById(R.id.text_email_usuario);
         bt_deslogar = findViewById(R.id.bt_deslogar);
+        bt_home = findViewById(R.id.bt_home);
+        bt_locais = findViewById(R.id.bt_locais);
     }
 }
