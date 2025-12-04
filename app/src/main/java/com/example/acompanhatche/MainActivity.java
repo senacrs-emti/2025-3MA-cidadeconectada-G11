@@ -10,10 +10,20 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
+    private static final String URL_API = "http://192.168.21.224/api/get_data.php";
 
     RecyclerView recycler;
     List<Obra> listaObras = new ArrayList<>();
@@ -34,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ObraAdapter(listaObras);
         recycler.setAdapter(adapter);
 
-        // exemplo: dados de teste (apague quando integrar com API)
-        listaObras.add(new Obra("Ponte da Azenha", "Em andamento"));
-        listaObras.add(new Obra("Viaduto João Pessoa", "Concluído"));
-        listaObras.add(new Obra("Avenida Pe. Cacique", "Paralisado"));
-        adapter.notifyDataSetChanged();
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -46,5 +51,55 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        carregarObrasAleatorias();
+
     }
+    private void carregarObrasAleatorias() {
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                URL_API,
+                null,
+                response -> {
+                    try {
+                        listaObras.clear();
+
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj = response.getJSONObject(i);
+
+                            Obra obra = new Obra(
+                                    obj.optString("nome"),
+                                    obj.optString("status")
+                            );
+
+                            listaObras.add(obra);
+                        }
+
+                        // 🔀 embaralha a lista
+                        java.util.Collections.shuffle(listaObras);
+
+                        if (listaObras.size() > 5) {
+                            listaObras = listaObras.subList(0, 5);
+                        }
+
+                        adapter = new ObraAdapter(listaObras);
+                        recycler.setAdapter(adapter);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    error.printStackTrace();
+                }
+        );
+
+        queue.add(request);
+    }
+
+
 }
+
+

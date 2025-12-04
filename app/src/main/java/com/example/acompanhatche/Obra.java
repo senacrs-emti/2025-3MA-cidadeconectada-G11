@@ -46,6 +46,7 @@ public class Obra {
         this.longitude = longitude;
     }
 
+
     // -------------------------------
     // CONSTRUTOR SIMPLES (USADO NO MAIN ACTIVITY PARA TESTE)
     // -------------------------------
@@ -88,4 +89,23 @@ public class Obra {
     public String getValorDespendido() { return valorDespendido; }
     public String getLatitude() { return latitude; }
     public String getLongitude() { return longitude; }
+
+    public double getLatitudeDouble() {
+        try {
+            return Double.parseDouble(latitude);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public double getLongitudeDouble() {
+        try {
+            return Double.parseDouble(longitude);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 }
+
+
