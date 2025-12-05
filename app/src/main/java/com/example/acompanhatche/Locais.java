@@ -15,8 +15,12 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -47,15 +51,24 @@ import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.acompanhatche.ApiConfig;
+
 public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCallback, OnMapReadyCallback {
 
+    private static LatLng ultimaPosicaoCamera = null;
+    private static float ultimoZoom = 0;
     private final int FINE_PERMISSION_CODE = 1;
     private GoogleMap meuMapa;
     Location currentLocation;
-    private static final String URL_API = "http://192.168.21.224/api/get_data.php";
+    private Marker marcadorUsuario;
+    private static final String URL_API = ApiConfig.GET_OBRAS;
+    private String obraBuscada = null;
+    ImageView btnMinhaLocalizacao;
     private List<Obra> listaObras = new ArrayList<>();
     private List<Marker> listaMarkers = new ArrayList<>();
-    private SearchView mapSearch;
+    private AutoCompleteTextView mapSearch;
+
+    ImageView btnPerfil, btnVoltarHome;
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -77,6 +90,10 @@ public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCa
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
+        if (getIntent().hasExtra("busca_obra")) {
+            obraBuscada = getIntent().getStringExtra("busca_obra");
+        }
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -85,36 +102,75 @@ public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCa
             return insets;
         });
 
-        SearchView searchView = findViewById(R.id.mapSearch);
+        mapSearch = findViewById(R.id.mapSearch);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        mapSearch.setOnItemClickListener((parent, view, position, id) -> {
+            String termo = parent.getItemAtPosition(position).toString();
+            buscarObraNoMapa(termo);
+        });
 
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                buscarObraNoMapa(query);
-                return true;
+        mapSearch.setOnEditorActionListener((v, actionId, event) -> {
+            buscarObraNoMapa(mapSearch.getText().toString());
+            return true;
+        });
+
+        btnPerfil = findViewById(R.id.btnPerfil);
+
+        btnPerfil.setOnClickListener(v -> {
+            Intent intent = new Intent(Locais.this, Perfil.class);
+            startActivity(intent);
+        });
+        btnVoltarHome = findViewById(R.id.btnVoltarHome);
+
+        btnVoltarHome.setOnClickListener(v -> {
+            Intent intent = new Intent(Locais.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        btnMinhaLocalizacao = findViewById(R.id.btnMinhaLocalizacao);
+
+        btnMinhaLocalizacao.setOnClickListener(v -> {
+
+            if (meuMapa == null || currentLocation == null) {
+                Toast.makeText(this, "Localização indisponível", Toast.LENGTH_SHORT).show();
+                return;
             }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
+            LatLng minhaPosicao = new LatLng(
+                    currentLocation.getLatitude(),
+                    currentLocation.getLongitude()
+            );
+
+            meuMapa.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(minhaPosicao, 16)
+            );
         });
 
 
     }
+    private String removerAcentos(String texto) {
+        return java.text.Normalizer.normalize(texto, java.text.Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "")
+                .toLowerCase();
+    }
+
     private void buscarObraNoMapa(String nomeBuscado) {
         if (meuMapa == null || nomeBuscado.isEmpty()) return;
 
-        for (Marker marker : listaMarkers) {
-            if (marker.getTitle() != null &&
-                    marker.getTitle().toLowerCase().contains(nomeBuscado.toLowerCase())) {
+        String buscaNormalizada = removerAcentos(nomeBuscado);
 
-                meuMapa.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                        marker.getPosition(), 16
-                ));
-                marker.showInfoWindow();
-                return;
+        for (Marker marker : listaMarkers) {
+            if (marker.getTitle() != null) {
+
+                String tituloNormalizado = removerAcentos(marker.getTitle());
+
+                if (tituloNormalizado.contains(buscaNormalizada)) {
+                    meuMapa.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 16)
+                    );
+                    marker.showInfoWindow();
+                    return;
+                }
             }
         }
 
@@ -122,23 +178,38 @@ public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCa
     }
 
 
+
     private void adicionarObrasNoMapa() {
         if (meuMapa == null) return;
 
-        meuMapa.clear();
         listaMarkers.clear();
 
+
         // marcador do usuário novamente
-        if (currentLocation != null) {
+        if (ultimaPosicaoCamera != null) {
+
+            // Volta exatamente onde o usuário estava antes
+            meuMapa.moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(ultimaPosicaoCamera, ultimoZoom)
+            );
+
+        } else if (currentLocation != null) {
+
+            // Só na PRIMEIRA vez vai para a localização atual
             LatLng poa = new LatLng(
                     currentLocation.getLatitude(),
                     currentLocation.getLongitude()
             );
 
-            meuMapa.addMarker(new MarkerOptions()
-                    .position(poa)
-                    .title("Você está aqui!")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+            meuMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(poa, 16));
+
+            marcadorUsuario = meuMapa.addMarker(
+                    new MarkerOptions()
+                            .position(poa)
+                            .title("Você está aqui!")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
+            );
+
         }
 
         for (Obra obra : listaObras) {
@@ -156,6 +227,9 @@ public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCa
                                 .snippet(obra.getStatus())
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
                 );
+
+                marker.setTag(obra.getObraId());
+
 
                 listaMarkers.add(marker);
             }
@@ -200,6 +274,24 @@ public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCa
                         }
 
                         adicionarObrasNoMapa();
+
+                        if (obraBuscada != null && !obraBuscada.isEmpty()) {
+                            buscarObraNoMapa(obraBuscada);
+                        }
+                        ArrayList<String> sugestoes = new ArrayList<>();
+
+                        for (Obra obra : listaObras) {
+                            sugestoes.add(obra.getNome());
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                                this,
+                                android.R.layout.simple_dropdown_item_1line,
+                                sugestoes
+                        );
+
+                        mapSearch.setAdapter(adapter);
+
 
 
                     } catch (JSONException e) {
@@ -246,14 +338,69 @@ public class Locais extends AppCompatActivity implements GoogleMap.OnMapLoadedCa
         meuMapa = googleMap;
 
         if (currentLocation != null) {
-            LatLng poa = new LatLng(currentLocation.getLatitude(), (currentLocation.getLongitude()));
-            meuMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(poa, 16));
-            MarkerOptions options = new MarkerOptions().position(poa).title("Você está aqui!");
-            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-            meuMapa.addMarker(options);
+            LatLng poa = new LatLng(
+                    currentLocation.getLatitude(),
+                    currentLocation.getLongitude()
+            );
 
+            marcadorUsuario = meuMapa.addMarker(
+                    new MarkerOptions()
+                            .position(poa)
+                            .title("Você está aqui!")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
+            );
+
+            meuMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(poa, 16));
         }
+
         carregarObras();
+
+        meuMapa.setOnCameraIdleListener(() -> {
+            ultimaPosicaoCamera = meuMapa.getCameraPosition().target;
+            ultimoZoom = meuMapa.getCameraPosition().zoom;
+        });
+
+
+        meuMapa.setOnInfoWindowClickListener(marker -> {
+
+            Object tag = marker.getTag();
+
+            if (tag == null) {
+                Toast.makeText(this, "Selecione uma obra", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int obraId = (int) tag;
+
+            Intent intent = new Intent(Locais.this, ObraDetalhes.class);
+            intent.putExtra("obra_id", obraId);
+            startActivity(intent);
+        });
+
+        meuMapa.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                View view = getLayoutInflater().inflate(
+                        R.layout.info_window_obra, null
+                );
+
+                TextView txtTituloObra = view.findViewById(R.id.txtTituloObra);
+                TextView txtDetalhes = view.findViewById(R.id.txtDetalhes);
+
+                txtTituloObra.setText(marker.getTitle());
+                txtDetalhes.setText("Toque para ver detalhes");
+
+                return view;
+            }
+        });
+
+
+
 
     }
 

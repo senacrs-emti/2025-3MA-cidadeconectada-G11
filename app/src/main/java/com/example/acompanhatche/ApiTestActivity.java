@@ -24,11 +24,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.acompanhatche.ApiConfig;
+
 
 public class ApiTestActivity extends AppCompatActivity {
 
     // BANCO DE DADOS
-    private static final String URL_API = "http://192.168.21.224/api/get_data.php"; // <- mudar o ip
+
+    private static final String URL_API = ApiConfig.GET_OBRAS;
     private static final String TAG = "DADOS_API";
     private List<Obra> listaObras = new ArrayList<>();
 

@@ -91,6 +91,10 @@ public class Cadastro extends AppCompatActivity {
                     snackbar.setBackgroundTint(Color.rgb(255, 149, 79));
                     snackbar.setTextColor(Color.WHITE);
                     snackbar.show();
+                    Intent intent = new Intent(Cadastro.this, Perfil.class);
+                    startActivity(intent);
+                    finish();
+
                 } else {
                     String erro;
                     try {

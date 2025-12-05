@@ -1,6 +1,8 @@
 package com.example.acompanhatche;
 
-public class Obra {
+import java.io.Serializable;
+
+public class Obra implements Serializable {
 
     private int obraId;
     private String nome;

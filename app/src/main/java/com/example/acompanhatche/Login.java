@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Perfil();
+                            Main();
                         }
                     }, 3000);
                 } else {
@@ -115,14 +115,15 @@ public class Login extends AppCompatActivity {
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
 
         if (usuarioAtual != null) {
-            Perfil();
+            Main();
         }
     }
 
-    private void Perfil() {
-            Intent intent = new Intent(Login.this, Perfil.class);
-            startActivity(intent);
-            finish();
+    private void Main() {
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
     private void IniciarComponentes(){

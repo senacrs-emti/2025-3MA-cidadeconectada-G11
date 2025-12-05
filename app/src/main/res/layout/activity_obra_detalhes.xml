@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/backgrounextra"
+            tools:context=".ObraDetalhes">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:padding="16dp"
+                    android:background="@drawable/container_main"
+                    android:orientation="vertical">
+
+                    <!-- TÍTULO -->
+                    <TextView
+                        android:id="@+id/txtNome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#F28C28"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginBottom="8dp"/>
+
+                    <!-- STATUS -->
+                    <TextView
+                        android:id="@+id/txtStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_tag_rosa"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@android:color/white"
+                        android:textSize="16dp"
+                        android:padding="8dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"/>
+
+                    <!-- LOCALIZAÇÃO -->
+                    <TextView
+                        android:id="@+id/txtLocalizacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textStyle="italic"
+                        android:textColor="@color/laranja"
+                        android:gravity="center"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- ORIGEM DO RECURSO -->
+                    <TextView
+                        android:id="@+id/txtOrigemRecurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/rosa_escuro"
+                        android:layout_marginBottom="6dp"/>
+
+                    <!-- CONTRATADO -->
+                    <TextView
+                        android:id="@+id/txtContratado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/rosa_escuro"
+                        android:layout_marginBottom="6dp"/>
+
+                    <!-- DATA ASSINATURA -->
+                    <TextView
+                        android:id="@+id/txtDataAssinatura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:background="@drawable/bg_tag_laranja"
+                        android:textColor="@color/white"
+                        android:padding="8dp"
+                        android:layout_marginTop="8dp"/>
+
+                    <!-- PRAZO -->
+                    <TextView
+                        android:id="@+id/txtPrazo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:background="@drawable/bg_tag_laranja"
+                        android:textColor="@color/white"
+                        android:padding="8dp"
+                        android:layout_marginTop="8dp"/>
+
+                    <!-- INVESTIMENTO -->
+                    <TextView
+                        android:id="@+id/txtInvestimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/rosa_escuro"
+                        android:layout_marginTop="12dp"/>
+
+                    <!-- LOTE + ZONA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_tag_rosa">
+
+                        <TextView
+                            android:id="@+id/txtZona"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ZONA"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtLote"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="LOTE"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/white"
+                            android:textAlignment="textEnd"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+
+                    <!-- BOTÃO VOLTAR -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnVoltarMapa"
+                        style="@style/Button"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Voltar ao mapa"
+                        android:layout_marginTop="24dp"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>

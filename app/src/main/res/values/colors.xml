@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="laranja">#ff954f</color>
     <color name="rosa">#ff6c98</color>
+    <color name="rosa_escuro">#de386a</color>
 </resources>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,14 +19,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ObraDetalhes"
+            android:exported="false" />
+        <activity
             android:name=".Perfil"
             android:exported="false" />
         <activity
             android:name=".ApiTestActivity"
-            android:exported="false" />
+            android:exported="false"
+
+            />
         <activity
             android:name=".Locais"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
         <meta-data
             android:name="com.google.android.geo.AIzaSyCzpSSbI_-_9Btz7KHUaagqe3PqIsOcVN4"
             android:value="AIzaSyCzpSSbI_-_9Btz7KHUaagqe3PqIsOcVN4" />
@@ -33,6 +41,7 @@
         <activity
             android:name=".Cadastro"
             android:exported="false" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -53,14 +62,12 @@
             </intent-filter>
         </activity>
 
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
-
     </application>
 
 </manifest>

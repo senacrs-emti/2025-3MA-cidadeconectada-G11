@@ -3,7 +3,7 @@ package com.example.acompanhatche;
 public class Usuario {
     private String nome;
     private String email;
-    private String senha; // deve ser o hash gerado pelo backend!
+    private String senha;
 
     // o construtor usado para enviar dados ao servidor
     public Usuario(String nome, String email, String senha) {
